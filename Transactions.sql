@@ -1,31 +1,5 @@
-create database BankingDB;
-
-use BankingDB;
-
-CREATE table IF NOT EXISTS Customers(
-CustomerID int, FirstName varchar(50),
-LastName varchar(50), Email varchar(100),
-Phone varchar(20)
-);
-
-desc  Customers;
-
--- to add new column 'AccountCreationDate'--->DATE --
-alter table Customers
-add AccountCreationDate date;
-
-insert into Customers
-(CustomerID,FirstName,LastName,Email,Phone,AccountCreationDate)
-value(101,'Raj','kurve','raj_k@gmail.com',9881004242,'2025-10-25');
-
--- to retrieve data from table --
--- syntax: Select * from <table_name>; --
-select *from Customers;
-
-select FirstName,Email,AccountCreationDate
-from Customers;
-
 -- lab-2 --
+use bankingdb;
 
 CREATE TABLE Accounts (
     AccountID INT,
@@ -70,7 +44,7 @@ show tables;
 5)Remove Constraints
 */
 
-
+desc Customers;
 show tables;
 
 -- change datatype of existing column --
@@ -83,20 +57,19 @@ alter table customers add column Balance bigint;
 ALTER Table customers
 add constraint chk_MinBalance
 Check(Balance>=5000);
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
+-- Drop 'accountbranches' table --
+-- syntax: DROP TABLE <table_name>; --
+DROP table accountbranches;
 
+desc customers;
 
+-- Add Primary key Constraints to 'CustomerID' in Customers Table --
+alter table customers    
+add primary key(CustomerID);
+
+-- Add unique constraints to 'Phone' of 'Customers' table --
+alter table customers
+add unique (Phone);    
+    
+    
